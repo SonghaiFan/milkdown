@@ -170,58 +170,6 @@ input {
   overflow: visible;
 }
 
-.fear-checkbox,
-.fear-command-icon {
-  color: var(--muted-ink);
-  font-family: 'Space Mono', monospace;
-  font-size: 13px;
-  font-weight: 400;
-  white-space: nowrap;
-}
-
-.fear-editor .milkdown .fear-action-entity {
-  position: relative;
-  border-radius: 2px;
-  transition: background 120ms ease;
-}
-
-.fear-editor .milkdown .fear-action-entity:hover {
-  background: #fff8e9;
-}
-
-.fear-editor .milkdown .fear-action-active {
-  background: linear-gradient(transparent 76%, rgb(225 81 77 / 18%) 76%);
-}
-
-.fear-editor .milkdown .fear-action-active::after,
-.fear-editor .milkdown .fear-action-stuck::after,
-.fear-editor .milkdown .fear-action-tomorrow::after {
-  position: absolute;
-  top: 5px;
-  right: -30px;
-  color: var(--red-pencil);
-  font-family: 'Space Mono', monospace;
-  font-size: 12px;
-}
-
-.fear-editor .milkdown .fear-action-active::after {
-  content: '▶';
-}
-
-.fear-editor .milkdown .fear-action-stuck::after {
-  content: '?';
-}
-
-.fear-editor .milkdown .fear-action-tomorrow::after {
-  content: '→';
-}
-
-.fear-editor .milkdown .fear-action-done {
-  color: #8d8881;
-  text-decoration: line-through;
-  text-decoration-thickness: 1px;
-}
-
 .fear-action-menu {
   position: absolute;
   z-index: 20;
@@ -236,13 +184,6 @@ input {
 .fear-action-menu[hidden],
 .fear-friction[hidden] {
   display: none;
-}
-
-.fear-action-explanation {
-  margin: 0 0 8px;
-  color: var(--muted-ink);
-  font-size: 11px;
-  line-height: 1.5;
 }
 
 .fear-action-commands {

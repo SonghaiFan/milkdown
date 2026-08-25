@@ -37,7 +37,6 @@ const copy = {
     newAction: '新建行动 Action',
     hint: '输入 /action，或在空行输入 [] 再按空格',
     actionCount: (count: number) => `${count} 个 Action`,
-    selected: '这是一个 Action。它仍然是文字，但已经可以行动。',
     start: '▶  开始行动',
     stuck: '?  我卡住了',
     done: '[x]  完成',
@@ -61,7 +60,6 @@ const copy = {
     newAction: 'New action 行动',
     hint: 'Type /action, or type [] then Space on an empty line',
     actionCount: (count: number) => `${count} actions`,
-    selected: 'This is an Action: still text, now also interactive.',
     start: '▶  Start',
     stuck: '?  I’m stuck',
     done: '[x]  Complete',
@@ -127,10 +125,10 @@ The interface is a sheet of paper first. Commands, buttons and state are annotat
 `,
 } as const
 
-const uncheckedIcon = '<span class="fear-checkbox">[ ]</span>'
-const checkedIcon = '<span class="fear-checkbox">[x]</span>'
-const bulletIcon = '<span class="fear-checkbox">·</span>'
-const actionIcon = '<span class="fear-command-icon">[ ]</span>'
+const uncheckedIcon = '<span>[ ]</span>'
+const checkedIcon = '<span>[x]</span>'
+const bulletIcon = '<span>·</span>'
+const actionIcon = '<span>[ ]</span>'
 
 function actionCount(value: string) {
   return value.match(/^\s*[*+-]\s+\[[ xX]\]\s+/gm)?.length ?? 0
@@ -152,7 +150,6 @@ export function setupFearAction(args: FearActionArgs) {
     <main class="fear-paper">
       <div class="fear-editor" aria-label="Fear Action notebook"></div>
       <aside class="fear-action-menu" hidden>
-        <p class="fear-action-explanation"></p>
         <div class="fear-action-commands">
           <button type="button" data-command="start"></button>
           <button type="button" data-command="stuck"></button>
@@ -197,8 +194,6 @@ export function setupFearAction(args: FearActionArgs) {
       text.notebook
     languageButton.textContent = text.language
     shell.querySelector<HTMLElement>('.fear-hint')!.textContent = text.hint
-    menu.querySelector<HTMLElement>('.fear-action-explanation')!.textContent =
-      text.selected
     menu.querySelector<HTMLButtonElement>(
       '[data-command="start"]'
     )!.textContent = text.start

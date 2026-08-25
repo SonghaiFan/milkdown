@@ -11,9 +11,9 @@ feature is ignored.
 - Typing `/action` or `[] ` creates an Action.
 - The durable representation is standard GFM task-list Markdown: `* [ ]` and
   `* [x]`.
-- An Action looks like text but is a ProseMirror entity. Selecting it reveals
-  four lightweight commands: start, report friction, complete, and move to
-  tomorrow.
+- An Action keeps the ordinary GFM task-item appearance. It gains no special
+  static styling. Selecting it reveals four lightweight commands: start,
+  report friction, complete, and move to tomorrow.
 - Questions and inputs appear as a conversational annotation beside the line,
   then disappear when the user returns to writing.
 - Chinese and English are both available; Chinese is the default in the demo.
