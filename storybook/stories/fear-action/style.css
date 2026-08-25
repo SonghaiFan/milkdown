@@ -260,11 +260,18 @@ input {
   white-space: nowrap;
 }
 
-.milkdown-slash-menu {
-  max-height: 370px;
+.fear-editor .milkdown .milkdown-slash-menu {
+  max-width: calc(100vw - 24px);
+  overflow: hidden;
   border: 1px solid rgb(55 50 45 / 13%);
   border-radius: 3px;
   box-shadow: 0 13px 32px rgb(39 34 29 / 13%);
+}
+
+.fear-editor .milkdown .milkdown-slash-menu .menu-groups {
+  max-height: min(420px, calc(100dvh - 180px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 @media (max-width: 700px) {
