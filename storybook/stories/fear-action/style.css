@@ -123,12 +123,17 @@ input {
 .fear-action-menu {
   position: absolute;
   z-index: 20;
-  width: min(360px, calc(100% - 48px));
-  padding: 12px 14px 13px;
+  width: 118px;
+  padding: 2px;
   background: rgb(255 254 250 / 97%);
   border: 1px solid rgb(55 50 45 / 13%);
-  border-radius: 3px;
-  box-shadow: 0 13px 32px rgb(39 34 29 / 13%);
+  border-radius: 4px;
+  box-shadow: 0 5px 16px rgb(39 34 29 / 11%);
+}
+
+.fear-action-menu[data-status='stuck'] {
+  width: min(360px, calc(100% - 48px));
+  padding: 7px 9px 10px;
 }
 
 .fear-action-menu[hidden],
@@ -138,21 +143,29 @@ input {
 
 .fear-action-commands {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px 18px;
+  grid-template-columns: repeat(4, 28px);
+  justify-content: end;
+  gap: 0;
 }
 
 .fear-action-commands button {
+  width: 28px;
+  height: 28px;
   border: 0;
-  padding: 7px 0;
+  border-radius: 3px;
+  padding: 0;
   color: var(--ink);
   background: transparent;
-  text-align: left;
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  line-height: 1;
+  text-align: center;
   cursor: pointer;
 }
 
 .fear-action-commands button:hover {
   color: var(--red-pencil);
+  background: #fff3ed;
 }
 
 .fear-friction {
@@ -263,6 +276,11 @@ input {
   }
 
   .fear-action-menu {
-    left: 20px !important;
+    right: 12px;
+    left: auto !important;
+  }
+
+  .fear-action-menu[data-status='stuck'] {
+    right: 20px;
   }
 }

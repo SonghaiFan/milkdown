@@ -175,18 +175,20 @@ export function setupFearAction(args: FearActionArgs) {
       text.notebook
     languageButton.textContent = text.language
     shell.querySelector<HTMLElement>('.fear-hint')!.textContent = text.hint
-    menu.querySelector<HTMLButtonElement>(
-      '[data-command="start"]'
-    )!.textContent = text.start
-    menu.querySelector<HTMLButtonElement>(
-      '[data-command="stuck"]'
-    )!.textContent = text.stuck
-    menu.querySelector<HTMLButtonElement>(
-      '[data-command="done"]'
-    )!.textContent = text.done
-    menu.querySelector<HTMLButtonElement>(
-      '[data-command="tomorrow"]'
-    )!.textContent = text.tomorrow
+    const commands = [
+      ['start', '▶', text.start],
+      ['stuck', '?', text.stuck],
+      ['done', '[x]', text.done],
+      ['tomorrow', '→', text.tomorrow],
+    ] as const
+    commands.forEach(([command, icon, label]) => {
+      const button = menu.querySelector<HTMLButtonElement>(
+        `[data-command="${command}"]`
+      )!
+      button.textContent = icon
+      button.setAttribute('aria-label', label)
+      button.title = label
+    })
     friction.querySelector<HTMLElement>('label')!.textContent =
       text.stuckQuestion
     frictionInput.placeholder = text.stepPlaceholder
@@ -202,21 +204,31 @@ export function setupFearAction(args: FearActionArgs) {
     friction.hidden = true
   }
 
+  const positionActionMenu = (actionSelection: ActionSelection) => {
+    const actionRect = actionSelection.element?.getBoundingClientRect()
+    const paperRect = paper.getBoundingClientRect()
+    if (!actionRect) return
+
+    const menuWidth = friction.hidden
+      ? 118
+      : Math.min(360, paperRect.width - 48)
+    const menuLeft = Math.max(
+      24,
+      Math.min(
+        actionRect.right - paperRect.left + 10,
+        paperRect.width - menuWidth - 12
+      )
+    )
+    menu.style.top = `${actionRect.top - paperRect.top + (actionRect.height - 34) / 2}px`
+    menu.style.left = `${menuLeft}px`
+  }
+
   const showActionMenu = (actionSelection: ActionSelection) => {
     activeAction = actionSelection
     menu.hidden = false
     friction.hidden = actionSelection.status !== 'stuck'
     menu.dataset.status = actionSelection.status
-
-    const actionRect = actionSelection.element?.getBoundingClientRect()
-    const paperRect = paper.getBoundingClientRect()
-    if (actionRect) {
-      menu.style.top = `${actionRect.bottom - paperRect.top + 7}px`
-      menu.style.left = `${Math.max(
-        24,
-        Math.min(actionRect.left - paperRect.left + 20, paperRect.width - 390)
-      )}px`
-    }
+    positionActionMenu(actionSelection)
 
     const note = frictionNotes.get(actionSelection.text)
     frictionInput.value = note ?? ''
@@ -302,8 +314,9 @@ export function setupFearAction(args: FearActionArgs) {
       checked: commandName === 'done',
     }
     menu.dataset.status = nextStatus[commandName]
+    friction.hidden = commandName !== 'stuck'
+    positionActionMenu(activeAction)
     if (commandName === 'stuck') {
-      friction.hidden = false
       frictionInput.focus()
     }
   })
@@ -335,6 +348,17 @@ export function setupFearAction(args: FearActionArgs) {
 
   setCopy()
   void createEditor(currentMarkdown).catch(console.error)
+  paper.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement
+    const clickedAction = event
+      .composedPath()
+      .some(
+        (node) =>
+          node instanceof HTMLElement &&
+          node.classList.contains('fear-action-entity')
+      )
+    if (!clickedAction && !target.closest('.fear-action-menu')) hideActionMenu()
+  })
   shadow.addEventListener('click', (event) => {
     const target = event.target as HTMLElement
     if (!target.closest('.fear-paper')) hideActionMenu()
