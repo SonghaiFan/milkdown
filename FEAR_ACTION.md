@@ -10,11 +10,12 @@ feature is ignored.
 - Any paragraph can remain an ordinary note forever.
 - Typing `@[ ] ` creates an Action without changing Milkdown's native `/`
   command syntax.
-- The durable representation is standard GFM task-list Markdown: `* [ ]` and
-  `* [x]`.
-- An Action keeps the ordinary GFM task-item appearance. It gains no special
-  static styling. Selecting it reveals four lightweight commands: start,
-  report friction, complete, and move to tomorrow.
+- The durable representation remains GFM task-list Markdown. A leading `@`
+  distinguishes an Action (`* [ ] @Call the mentor`) from an ordinary task
+  (`* [ ] Buy milk`).
+- An Action uses Crepe's native task control with a small `@` semantic marker.
+  Selecting it reveals four lightweight commands: start, report friction,
+  complete, and move to tomorrow. Ordinary tasks remain non-interactive.
 - Markdown typography, spacing, lists, and task controls use Crepe's native
   theme. The Fear → Action layer styles only the surrounding paper and workflow
   annotations.

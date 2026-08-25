@@ -63,10 +63,11 @@ const markdown = {
 
 ## 今天
 
-* [ ] 把 Milkdown 编辑器变成可以行动的笔记本
-* [ ] 给导师发送产品方向更新
-* [x] 整理昨天访谈里的三个关键句子
-* [ ] 读完研究笔记，标出与“行动阻力”有关的段落
+* [ ] @把 Milkdown 编辑器变成可以行动的笔记本
+* [ ] @给导师发送产品方向更新
+* [x] @整理昨天访谈里的三个关键句子
+* [ ] @读完研究笔记，标出与“行动阻力”有关的段落
+* [ ] 普通 Markdown task：确认参考资料链接
 
 普通文字只是笔记。它不会因为这个 app 而被迫变成表单或任务。
 
@@ -74,9 +75,9 @@ const markdown = {
 
 ## 接下来几天
 
-* [ ] 周三：把 onboarding 缩成一页纸
-* [ ] 周四：找两个人测试斜杠菜单
-* [ ] 周五：回看一周里所有“我卡住了”
+* [ ] @周三：把 onboarding 缩成一页纸
+* [ ] @周四：找两个人测试斜杠菜单
+* [ ] @周五：回看一周里所有“我卡住了”
 
 ## 随手记
 
@@ -88,10 +89,11 @@ My head feels noisy today. Write first; organise later.
 
 ## Today
 
-* [ ] Turn the Milkdown editor into a notebook that can act
-* [ ] Send the product direction update to my mentor
-* [x] Pull three useful quotes from yesterday’s interview
-* [ ] Read the research notes and mark passages about action friction
+* [ ] @Turn the Milkdown editor into a notebook that can act
+* [ ] @Send the product direction update to my mentor
+* [x] @Pull three useful quotes from yesterday’s interview
+* [ ] @Read the research notes and mark passages about action friction
+* [ ] Plain Markdown task: verify the reference links
 
 Ordinary text is just a note. This app should never force it into a form or a task.
 
@@ -99,9 +101,9 @@ The hard part is often not knowing what to do. It is that the next step feels to
 
 ## The next few days
 
-* [ ] Wednesday: reduce onboarding to one sheet of paper
-* [ ] Thursday: test the slash menu with two people
-* [ ] Friday: review every moment where I said “I’m stuck”
+* [ ] @Wednesday: reduce onboarding to one sheet of paper
+* [ ] @Thursday: test the slash menu with two people
+* [ ] @Friday: review every moment where I said “I’m stuck”
 
 ## Margin note
 
@@ -110,7 +112,7 @@ The interface is a sheet of paper first. Commands, buttons and state are annotat
 } as const
 
 function actionCount(value: string) {
-  return value.match(/^\s*[*+-]\s+\[[ xX]\]\s+/gm)?.length ?? 0
+  return value.match(/^\s*[*+-]\s+\[[ xX]\]\s+@/gm)?.length ?? 0
 }
 
 export function setupFearAction(args: FearActionArgs) {

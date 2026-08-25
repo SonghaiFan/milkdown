@@ -6,7 +6,7 @@ import { Plugin, PluginKey } from '@milkdown/prose/state'
 import { Decoration, DecorationSet } from '@milkdown/prose/view'
 import { $ctx, $prose } from '@milkdown/utils'
 
-import { findActionPos } from './action-utils'
+import { findActionPos, isActionNode } from './action-utils'
 
 export type ActionStatus = 'idle' | 'active' | 'stuck' | 'done' | 'tomorrow'
 
@@ -43,7 +43,7 @@ export const actionEntityPluginKey = new PluginKey<ActionEntityState>(
 )
 
 function isAction(node: ProseNode | null | undefined) {
-  return node?.type.name === 'list_item' && node.attrs.checked != null
+  return isActionNode(node)
 }
 
 function remapStatuses(transaction: Transaction, state: ActionEntityState) {

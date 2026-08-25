@@ -9,10 +9,11 @@ import { action } from '@fear-action/milkdown-plugin-action'
 editor.use(action)
 ```
 
-The Markdown owns durable content and completion (`* [ ]` / `* [x]`). Ephemeral
-workflow states such as `active`, `stuck`, and `tomorrow` are decorations kept
-outside the Markdown document. This is intentional: a user can ignore every
-Fear → Action feature and still use the editor as a normal Markdown notebook.
+The Markdown owns durable content and completion. `* [ ] Buy milk` remains an
+ordinary GFM task; `* [ ] @Call the mentor` is parsed as an Action. The editor
+renders the marker beside Crepe's native checkbox instead of placing it in the
+task text. Ephemeral workflow states such as `active`, `stuck`, and `tomorrow`
+are decorations kept outside the Markdown document.
 
 The package also exports commands for creating and changing the current action,
 plus an input rule that turns `@[ ] ` into a new action. It does not modify or

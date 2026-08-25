@@ -105,6 +105,21 @@ input {
   min-height: 1108px;
 }
 
+.fear-editor .milkdown .fear-action-entity {
+  position: relative;
+}
+
+.fear-editor .milkdown .fear-action-source-marker {
+  position: absolute;
+  top: 5px;
+  left: -17px;
+  color: var(--red-pencil);
+  font-family: 'Space Mono', monospace;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+}
+
 .fear-action-menu {
   position: absolute;
   z-index: 20;

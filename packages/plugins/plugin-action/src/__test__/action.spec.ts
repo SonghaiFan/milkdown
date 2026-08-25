@@ -39,12 +39,13 @@ function firstActionPos(editor: Editor) {
   const view = editor.ctx.get(editorViewCtx)
   let result = -1
   view.state.doc.descendants((node, pos) => {
-    if (
-      result < 0 &&
-      node.type.name === 'list_item' &&
-      node.attrs.checked != null
-    )
+    if (result >= 0 || node.type.name !== 'list_item') return result < 0
+
+    node.descendants((child) => {
+      if (child.type.name !== 'action_marker') return true
       result = pos
+      return false
+    })
     return result < 0
   })
   return result
@@ -62,17 +63,22 @@ afterEach(async () => {
 })
 
 describe('Fear Action entity', () => {
-  it('decorates task items but leaves ordinary notes alone', async () => {
-    const editor = await createEditor('A normal note.\n\n* [ ] Read research\n')
+  it('decorates Actions but leaves ordinary tasks and notes alone', async () => {
+    const editor = await createEditor(
+      'A normal note.\n\n* [ ] Buy milk\n* [ ] @Read research\n'
+    )
     const view = editor.ctx.get(editorViewCtx)
     const pluginState = actionEntityPluginKey.getState(view.state)
 
     expect(pluginState?.decorations.find()).toHaveLength(1)
     expect(view.dom.querySelectorAll('.fear-action-entity')).toHaveLength(1)
+    expect(editor.action(getMarkdown())).toBe(
+      'A normal note.\n\n* [ ] Buy milk\n* [ ] @Read research\n'
+    )
   })
 
   it('changes runtime state without changing the Markdown text', async () => {
-    const editor = await createEditor('* [ ] Read research\n')
+    const editor = await createEditor('* [ ] @Read research\n')
     const pos = firstActionPos(editor)
     selectAction(editor, pos)
     editor.ctx.get(commandsCtx).call(startActionCommand.key)
@@ -81,23 +87,23 @@ describe('Fear Action entity', () => {
     expect(actionEntityPluginKey.getState(view.state)?.statuses.get(pos)).toBe(
       'active'
     )
-    expect(editor.action(getMarkdown())).toBe('* [ ] Read research\n')
+    expect(editor.action(getMarkdown())).toBe('* [ ] @Read research\n')
   })
 
   it('serializes completion back to standard GFM Markdown', async () => {
-    const editor = await createEditor('* [ ] Read research\n')
+    const editor = await createEditor('* [ ] @Read research\n')
     const pos = firstActionPos(editor)
     selectAction(editor, pos)
     editor.ctx.get(commandsCtx).call(completeActionCommand.key)
 
-    expect(editor.action(getMarkdown())).toBe('* [x] Read research\n')
+    expect(editor.action(getMarkdown())).toBe('* [x] @Read research\n')
   })
 
   it('turns the current paragraph into a portable Markdown action', async () => {
     const editor = await createEditor('Call the mentor\n')
     editor.ctx.get(commandsCtx).call(createActionCommand.key)
 
-    expect(editor.action(getMarkdown())).toBe('* [ ] Call the mentor\n')
+    expect(editor.action(getMarkdown())).toBe('* [ ] @Call the mentor\n')
   })
 
   it('turns @[ ] followed by Space into an action', async () => {
@@ -113,6 +119,6 @@ describe('Fear Action entity', () => {
     )
 
     expect(handled).toBe(true)
-    expect(editor.action(getMarkdown())).toMatch(/^\* \[ \]/)
+    expect(editor.action(getMarkdown())).toMatch(/^\* \[ \] @/)
   })
 })

@@ -5,6 +5,7 @@ import { wrapIn } from '@milkdown/prose/commands'
 import { $command } from '@milkdown/utils'
 
 import { actionEntityPluginKey, type ActionStatus } from './action-entity'
+import { actionMarkerSchema } from './action-marker'
 import { findActionPos } from './action-utils'
 
 export interface ActionCommandPayload {
@@ -36,10 +37,39 @@ function updateAction(
   }
 }
 
-export const createActionCommand = $command(
-  'CreateAction',
-  (ctx) => () => wrapIn(listItemSchema.type(ctx), { checked: false })
-)
+export const createActionCommand = $command('CreateAction', (ctx) => () => {
+  const itemType = listItemSchema.type(ctx)
+  const markerType = actionMarkerSchema.type(ctx)
+
+  return (state, dispatch) => {
+    if (!dispatch) return wrapIn(itemType, { checked: false })(state)
+
+    let nextTransaction = state.tr
+    const wrapped = wrapIn(itemType, { checked: false })(state, (tr) => {
+      nextTransaction = tr
+    })
+    if (!wrapped) return false
+
+    let actionPos: number | null = null
+    const selectionPos = nextTransaction.selection.from
+    nextTransaction.doc.descendants((node, pos) => {
+      if (
+        actionPos == null &&
+        node.type === itemType &&
+        pos <= selectionPos &&
+        selectionPos < pos + node.nodeSize
+      ) {
+        actionPos = pos
+        return false
+      }
+      return actionPos == null
+    })
+    if (actionPos == null) return false
+
+    dispatch(nextTransaction.insert(actionPos + 2, markerType.create()))
+    return true
+  }
+})
 
 export const startActionCommand = $command('StartAction', () =>
   updateAction('active', false)
