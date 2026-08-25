@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Senty Caramel';
+  src: url('/fonts/SentyCaramel.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 :host {
   --ink: #262522;
   --muted-ink: #77716a;
@@ -102,7 +110,10 @@ input {
 }
 
 .fear-editor .milkdown .ProseMirror {
+  --crepe-font-title: 'Senty Caramel', 'Noto Serif', 'Songti SC', serif;
+
   min-height: 1108px;
+  font-family: 'Senty Caramel', 'Noto Serif', 'Songti SC', serif;
 }
 
 .fear-editor .milkdown .fear-action-entity {
