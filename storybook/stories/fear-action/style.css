@@ -114,6 +114,16 @@ input {
 
   min-height: 1108px;
   font-family: 'Senty Caramel', 'Noto Serif', 'Songti SC', serif;
+  font-size: 18px;
+  letter-spacing: 0.025em;
+}
+
+.fear-editor .milkdown .ProseMirror h1 {
+  font-size: 2.35em;
+}
+
+.fear-editor .milkdown .ProseMirror h2 {
+  font-size: 2em;
 }
 
 .fear-editor .milkdown .fear-action-entity {
