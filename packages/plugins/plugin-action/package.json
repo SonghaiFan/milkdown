@@ -1,0 +1,50 @@
+{
+  "name": "@fear-action/milkdown-plugin-action",
+  "version": "0.1.0",
+  "keywords": [
+    "action",
+    "milkdown",
+    "milkdown plugin"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SonghaiFan/milkdown.git",
+    "directory": "packages/plugins/plugin-action"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "main": "./src/index.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts"
+    }
+  },
+  "publishConfig": {
+    "main": "./lib/index.js",
+    "types": "./lib/index.d.ts",
+    "exports": {
+      ".": {
+        "import": "./lib/index.js",
+        "types": "./lib/index.d.ts"
+      }
+    }
+  },
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@milkdown/ctx": "workspace:*",
+    "@milkdown/preset-commonmark": "workspace:*",
+    "@milkdown/prose": "workspace:*",
+    "@milkdown/utils": "workspace:*"
+  },
+  "devDependencies": {
+    "@milkdown/core": "workspace:*",
+    "@milkdown/preset-gfm": "workspace:*"
+  }
+}

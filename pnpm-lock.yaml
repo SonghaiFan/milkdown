@@ -506,6 +506,28 @@ importers:
         specifier: workspace:*
         version: link:../utils
 
+  packages/plugins/plugin-action:
+    dependencies:
+      '@milkdown/ctx':
+        specifier: workspace:*
+        version: link:../../ctx
+      '@milkdown/preset-commonmark':
+        specifier: workspace:*
+        version: link:../preset-commonmark
+      '@milkdown/prose':
+        specifier: workspace:*
+        version: link:../../prose
+      '@milkdown/utils':
+        specifier: workspace:*
+        version: link:../../utils
+    devDependencies:
+      '@milkdown/core':
+        specifier: workspace:*
+        version: link:../../core
+      '@milkdown/preset-gfm':
+        specifier: workspace:*
+        version: link:../preset-gfm
+
   packages/plugins/plugin-automd:
     dependencies:
       '@milkdown/core':
@@ -1013,6 +1035,9 @@ importers:
       '@codemirror/view':
         specifier: ^6.26.0
         version: 6.43.8
+      '@fear-action/milkdown-plugin-action':
+        specifier: workspace:*
+        version: link:../packages/plugins/plugin-action
       '@milkdown/crepe':
         specifier: workspace:*
         version: link:../packages/crepe

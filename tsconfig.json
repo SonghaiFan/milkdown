@@ -13,6 +13,7 @@
     { "path": "./packages/integrations/react" },
     { "path": "./packages/integrations/vue" },
     { "path": "./packages/kit" },
+    { "path": "./packages/plugins/plugin-action" },
     { "path": "./packages/plugins/plugin-automd" },
     { "path": "./packages/plugins/plugin-block" },
     { "path": "./packages/plugins/plugin-clipboard" },

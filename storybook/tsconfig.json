@@ -16,6 +16,7 @@
   "references": [
     { "path": "../packages/crepe" },
     { "path": "../packages/kit" },
+    { "path": "../packages/plugins/plugin-action" },
     { "path": "../packages/plugins/theme-nord" }
   ]
 }

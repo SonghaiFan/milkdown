@@ -1,0 +1,375 @@
+:host {
+  --ink: #262522;
+  --muted-ink: #77716a;
+  --red-pencil: #c83c36;
+  --paper: #fffefa;
+  --desk: #e9e5df;
+  display: block;
+  color: var(--ink);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.fear-action-shell {
+  min-height: 100vh;
+  padding: 22px 28px 32px;
+  background:
+    radial-gradient(circle at 50% 0%, rgb(255 255 255 / 55%), transparent 42%),
+    var(--desk);
+  font-family:
+    'Noto Sans',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+}
+
+.fear-header,
+.fear-footer {
+  width: min(860px, calc(100vw - 48px));
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  color: var(--muted-ink);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+
+.fear-header {
+  min-height: 34px;
+  margin-bottom: 13px;
+}
+
+.fear-wordmark {
+  color: var(--ink);
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+}
+
+.fear-wordmark i {
+  color: var(--red-pencil);
+  font-style: normal;
+}
+
+.fear-document-name {
+  margin-left: auto;
+  margin-right: 18px;
+}
+
+.fear-language {
+  appearance: none;
+  border: 0;
+  border-bottom: 1px solid rgb(38 37 34 / 28%);
+  padding: 3px 1px;
+  color: var(--ink);
+  background: transparent;
+  cursor: pointer;
+}
+
+.fear-paper {
+  position: relative;
+  width: min(860px, calc(100vw - 48px));
+  min-height: 1110px;
+  margin: 0 auto;
+  overflow: visible;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 62px,
+      rgb(200 60 54 / 13%) 62px 63px,
+      transparent 63px
+    ),
+    var(--paper);
+  border: 1px solid rgb(70 64 56 / 10%);
+  box-shadow:
+    0 1px 2px rgb(39 34 29 / 8%),
+    0 20px 55px rgb(39 34 29 / 10%);
+}
+
+.fear-editor {
+  min-height: 1108px;
+}
+
+.fear-editor .milkdown {
+  min-height: inherit;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+}
+
+.fear-editor .milkdown .ProseMirror {
+  min-height: 1108px;
+  padding: 86px 88px 120px 102px;
+  outline: none;
+  font-family: 'Noto Serif', 'Songti SC', 'Times New Roman', serif;
+  font-size: 18px;
+  line-height: 1.82;
+  caret-color: var(--red-pencil);
+}
+
+.fear-editor .milkdown .ProseMirror > :first-child {
+  margin-top: 0;
+}
+
+.fear-editor .milkdown h1,
+.fear-editor .milkdown h2,
+.fear-editor .milkdown h3 {
+  color: var(--ink);
+  font-family:
+    'Noto Sans',
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  letter-spacing: -0.035em;
+}
+
+.fear-editor .milkdown h1 {
+  margin: 0 0 42px;
+  font-size: 30px;
+  font-weight: 560;
+}
+
+.fear-editor .milkdown h2 {
+  margin: 44px 0 13px;
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.fear-editor .milkdown p {
+  margin: 0 0 15px;
+}
+
+.fear-editor .milkdown ul,
+.fear-editor .milkdown ol {
+  margin: 8px 0 22px;
+  padding-left: 0;
+}
+
+.fear-editor .milkdown .milkdown-list-item-block > .list-item {
+  gap: 8px;
+  margin: 1px 0;
+}
+
+.fear-editor .milkdown .milkdown-list-item-block .label-wrapper {
+  width: 31px;
+  margin-left: -38px;
+  color: var(--muted-ink);
+}
+
+.fear-editor .milkdown .milkdown-list-item-block .label {
+  width: 31px;
+  overflow: visible;
+}
+
+.fear-checkbox,
+.fear-command-icon {
+  color: var(--muted-ink);
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.fear-editor .milkdown .fear-action-entity {
+  position: relative;
+  border-radius: 2px;
+  transition: background 120ms ease;
+}
+
+.fear-editor .milkdown .fear-action-entity:hover {
+  background: #fff8e9;
+}
+
+.fear-editor .milkdown .fear-action-active {
+  background: linear-gradient(transparent 76%, rgb(225 81 77 / 18%) 76%);
+}
+
+.fear-editor .milkdown .fear-action-active::after,
+.fear-editor .milkdown .fear-action-stuck::after,
+.fear-editor .milkdown .fear-action-tomorrow::after {
+  position: absolute;
+  top: 5px;
+  right: -30px;
+  color: var(--red-pencil);
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+}
+
+.fear-editor .milkdown .fear-action-active::after {
+  content: '▶';
+}
+
+.fear-editor .milkdown .fear-action-stuck::after {
+  content: '?';
+}
+
+.fear-editor .milkdown .fear-action-tomorrow::after {
+  content: '→';
+}
+
+.fear-editor .milkdown .fear-action-done {
+  color: #8d8881;
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.fear-action-menu {
+  position: absolute;
+  z-index: 20;
+  width: min(360px, calc(100% - 48px));
+  padding: 12px 14px 13px;
+  background: rgb(255 254 250 / 97%);
+  border: 1px solid rgb(55 50 45 / 13%);
+  border-radius: 3px;
+  box-shadow: 0 13px 32px rgb(39 34 29 / 13%);
+}
+
+.fear-action-menu[hidden],
+.fear-friction[hidden] {
+  display: none;
+}
+
+.fear-action-explanation {
+  margin: 0 0 8px;
+  color: var(--muted-ink);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.fear-action-commands {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px 18px;
+}
+
+.fear-action-commands button {
+  border: 0;
+  padding: 7px 0;
+  color: var(--ink);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.fear-action-commands button:hover {
+  color: var(--red-pencil);
+}
+
+.fear-friction {
+  margin-top: 9px;
+  padding-top: 10px;
+  border-top: 1px solid rgb(55 50 45 / 10%);
+}
+
+.fear-friction label {
+  display: block;
+  margin-bottom: 8px;
+  font-family: 'Noto Serif', 'Songti SC', serif;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.fear-friction-row {
+  display: flex;
+  gap: 8px;
+}
+
+.fear-friction input {
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  border-bottom: 1px solid var(--red-pencil);
+  border-radius: 0;
+  padding: 4px 1px;
+  color: var(--ink);
+  background: transparent;
+  outline: none;
+}
+
+.fear-friction button {
+  border: 0;
+  padding: 4px 7px;
+  color: var(--red-pencil);
+  background: transparent;
+  cursor: pointer;
+}
+
+.fear-friction small {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted-ink);
+}
+
+.fear-footer {
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 13px;
+}
+
+.fear-status {
+  white-space: nowrap;
+}
+
+.milkdown-slash-menu {
+  max-height: 370px;
+  border: 1px solid rgb(55 50 45 / 13%);
+  border-radius: 3px;
+  box-shadow: 0 13px 32px rgb(39 34 29 / 13%);
+}
+
+@media (max-width: 700px) {
+  .fear-action-shell {
+    padding: 0 0 24px;
+  }
+
+  .fear-header,
+  .fear-footer,
+  .fear-paper {
+    width: 100%;
+  }
+
+  .fear-header,
+  .fear-footer {
+    padding-inline: 18px;
+  }
+
+  .fear-paper {
+    min-height: calc(100vh - 88px);
+    border-inline: 0;
+    background: var(--paper);
+  }
+
+  .fear-editor,
+  .fear-editor .milkdown,
+  .fear-editor .milkdown .ProseMirror {
+    min-height: calc(100vh - 88px);
+  }
+
+  .fear-editor .milkdown .ProseMirror {
+    padding: 50px 34px 100px 52px;
+    font-size: 17px;
+  }
+
+  .fear-document-name {
+    display: none;
+  }
+
+  .fear-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .fear-action-menu {
+    left: 20px !important;
+  }
+}

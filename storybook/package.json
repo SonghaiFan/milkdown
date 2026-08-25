@@ -13,6 +13,7 @@
     "@codemirror/state": "^6.4.1",
     "@codemirror/theme-one-dark": "^6.1.2",
     "@codemirror/view": "^6.26.0",
+    "@fear-action/milkdown-plugin-action": "workspace:*",
     "@milkdown/crepe": "workspace:*",
     "@milkdown/kit": "workspace:*",
     "@milkdown/theme-nord": "workspace:*",
