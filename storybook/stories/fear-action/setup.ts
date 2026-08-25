@@ -109,10 +109,6 @@ The interface is a sheet of paper first. Commands, buttons and state are annotat
 `,
 } as const
 
-const uncheckedIcon = '<span>[ ]</span>'
-const checkedIcon = '<span>[x]</span>'
-const bulletIcon = '<span>·</span>'
-
 function actionCount(value: string) {
   return value.match(/^\s*[*+-]\s+\[[ xX]\]\s+/gm)?.length ?? 0
 }
@@ -242,11 +238,6 @@ export function setupFearAction(args: FearActionArgs) {
         [Crepe.Feature.AI]: false,
       },
       featureConfigs: {
-        [Crepe.Feature.ListItem]: {
-          bulletIcon,
-          checkBoxCheckedIcon: checkedIcon,
-          checkBoxUncheckedIcon: uncheckedIcon,
-        },
         [Crepe.Feature.Placeholder]: { text: text.placeholder },
         [Crepe.Feature.BlockEdit]: {
           blockHandle: {

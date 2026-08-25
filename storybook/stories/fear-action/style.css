@@ -99,75 +99,10 @@ input {
 
 .fear-editor .milkdown {
   min-height: inherit;
-  color: var(--ink);
-  background: transparent;
-  border: 0;
 }
 
 .fear-editor .milkdown .ProseMirror {
   min-height: 1108px;
-  padding: 86px 88px 120px 102px;
-  outline: none;
-  font-family: 'Noto Serif', 'Songti SC', 'Times New Roman', serif;
-  font-size: 18px;
-  line-height: 1.82;
-  caret-color: var(--red-pencil);
-}
-
-.fear-editor .milkdown .ProseMirror > :first-child {
-  margin-top: 0;
-}
-
-.fear-editor .milkdown h1,
-.fear-editor .milkdown h2,
-.fear-editor .milkdown h3 {
-  color: var(--ink);
-  font-family:
-    'Noto Sans',
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
-  letter-spacing: -0.035em;
-}
-
-.fear-editor .milkdown h1 {
-  margin: 0 0 42px;
-  font-size: 30px;
-  font-weight: 560;
-}
-
-.fear-editor .milkdown h2 {
-  margin: 44px 0 13px;
-  font-size: 14px;
-  font-weight: 650;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.fear-editor .milkdown p {
-  margin: 0 0 15px;
-}
-
-.fear-editor .milkdown ul,
-.fear-editor .milkdown ol {
-  margin: 8px 0 22px;
-  padding-left: 0;
-}
-
-.fear-editor .milkdown .milkdown-list-item-block > .list-item {
-  gap: 8px;
-  margin: 1px 0;
-}
-
-.fear-editor .milkdown .milkdown-list-item-block .label-wrapper {
-  width: 31px;
-  margin-left: -38px;
-  color: var(--muted-ink);
-}
-
-.fear-editor .milkdown .milkdown-list-item-block .label {
-  width: 31px;
-  overflow: visible;
 }
 
 .fear-action-menu {
@@ -300,11 +235,6 @@ input {
   .fear-editor .milkdown,
   .fear-editor .milkdown .ProseMirror {
     min-height: calc(100vh - 88px);
-  }
-
-  .fear-editor .milkdown .ProseMirror {
-    padding: 50px 34px 100px 52px;
-    font-size: 17px;
   }
 
   .fear-document-name {

@@ -15,6 +15,9 @@ feature is ignored.
 - An Action keeps the ordinary GFM task-item appearance. It gains no special
   static styling. Selecting it reveals four lightweight commands: start,
   report friction, complete, and move to tomorrow.
+- Markdown typography, spacing, lists, and task controls use Crepe's native
+  theme. The Fear → Action layer styles only the surrounding paper and workflow
+  annotations.
 - Questions and inputs appear as a conversational annotation beside the line,
   then disappear when the user returns to writing.
 - Chinese and English are both available; Chinese is the default in the demo.
