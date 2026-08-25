@@ -4,7 +4,6 @@ import {
   action,
   actionEntityConfig,
   completeActionCommand,
-  createActionCommand,
   moveActionToTomorrowCommand,
   reportActionFrictionCommand,
   startActionCommand,
@@ -13,7 +12,6 @@ import { Crepe } from '@milkdown/crepe'
 import classic from '@milkdown/crepe/theme/classic.css?inline'
 import all from '@milkdown/crepe/theme/common/style.css?inline'
 import { commandsCtx } from '@milkdown/kit/core'
-import { clearTextInCurrentBlockCommand } from '@milkdown/kit/preset/commonmark'
 
 import { wrapInShadow } from '../utils/shadow'
 import localStyle from './style.css?inline'
@@ -28,14 +26,7 @@ const copy = {
     language: 'EN',
     saved: '已保存到本地文档',
     placeholder: '像写笔记一样开始。输入 / 查看命令…',
-    textGroup: '文字',
-    text: '正文',
-    heading1: '大标题',
-    heading2: '小标题',
-    heading3: '三级标题',
-    actionGroup: '行动',
-    newAction: '新建行动 Action',
-    hint: '输入 /action，或在空行输入 [] 再按空格',
+    hint: '输入 @[ ] 再按空格创建 Action；/ 保持 Milkdown 原生命令',
     actionCount: (count: number) => `${count} 个 Action`,
     start: '▶  开始行动',
     stuck: '?  我卡住了',
@@ -51,14 +42,7 @@ const copy = {
     language: '中文',
     saved: 'Saved to the local document',
     placeholder: 'Start as if this were a notebook. Type / for commands…',
-    textGroup: 'Text',
-    text: 'Paragraph',
-    heading1: 'Heading 1',
-    heading2: 'Heading 2',
-    heading3: 'Heading 3',
-    actionGroup: 'Action',
-    newAction: 'New action 行动',
-    hint: 'Type /action, or type [] then Space on an empty line',
+    hint: 'Type @[ ] then Space for an Action; / remains native Milkdown',
     actionCount: (count: number) => `${count} actions`,
     start: '▶  Start',
     stuck: '?  I’m stuck',
@@ -128,7 +112,6 @@ The interface is a sheet of paper first. Commands, buttons and state are annotat
 const uncheckedIcon = '<span>[ ]</span>'
 const checkedIcon = '<span>[x]</span>'
 const bulletIcon = '<span>·</span>'
-const actionIcon = '<span>[ ]</span>'
 
 function actionCount(value: string) {
   return value.match(/^\s*[*+-]\s+\[[ xX]\]\s+/gm)?.length ?? 0
@@ -268,33 +251,6 @@ export function setupFearAction(args: FearActionArgs) {
         [Crepe.Feature.BlockEdit]: {
           blockHandle: {
             shouldShow: () => false,
-          },
-          textGroup: {
-            label: text.textGroup,
-            text: { label: text.text },
-            h1: { label: text.heading1 },
-            h2: { label: text.heading2 },
-            h3: { label: text.heading3 },
-            h4: null,
-            h5: null,
-            h6: null,
-            quote: null,
-            divider: null,
-          },
-          listGroup: null,
-          advancedGroup: null,
-          buildMenu: (builder) => {
-            builder
-              .addGroup('fear-action', text.actionGroup)
-              .addItem('action', {
-                label: text.newAction,
-                icon: actionIcon,
-                onRun: (ctx) => {
-                  const commands = ctx.get(commandsCtx)
-                  commands.call(clearTextInCurrentBlockCommand.key)
-                  commands.call(createActionCommand.key)
-                },
-              })
           },
         },
       },

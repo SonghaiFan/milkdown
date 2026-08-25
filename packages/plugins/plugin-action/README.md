@@ -15,4 +15,5 @@ outside the Markdown document. This is intentional: a user can ignore every
 Fear → Action feature and still use the editor as a normal Markdown notebook.
 
 The package also exports commands for creating and changing the current action,
-plus an input rule that turns `[] ` into a new action.
+plus an input rule that turns `@[ ] ` into a new action. It does not modify or
+replace Milkdown's native `/` command menu.

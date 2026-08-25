@@ -100,10 +100,10 @@ describe('Fear Action entity', () => {
     expect(editor.action(getMarkdown())).toBe('* [ ] Call the mentor\n')
   })
 
-  it('turns [] followed by Space into an action', async () => {
+  it('turns @[ ] followed by Space into an action', async () => {
     const editor = await createEditor('')
     const view = editor.ctx.get(editorViewCtx)
-    view.dispatch(view.state.tr.insertText('[]'))
+    view.dispatch(view.state.tr.insertText('@[ ]'))
     const { from, to } = view.state.selection
 
     const handled = view.someProp('handleTextInput', (handler) =>

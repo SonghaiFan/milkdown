@@ -8,7 +8,8 @@ feature is ignored.
 
 - The primary surface is a document, not a dashboard or a form.
 - Any paragraph can remain an ordinary note forever.
-- Typing `/action` or `[] ` creates an Action.
+- Typing `@[ ] ` creates an Action without changing Milkdown's native `/`
+  command syntax.
 - The durable representation is standard GFM task-list Markdown: `* [ ]` and
   `* [x]`.
 - An Action keeps the ordinary GFM task-item appearance. It gains no special
@@ -28,9 +29,9 @@ local sidecar store later without contaminating the text format.
 The proof of concept lives in two places:
 
 - `packages/plugins/plugin-action` — reusable Milkdown plugin, commands, and the
-  direct `[] ` input rule.
-- `storybook/stories/fear-action` — A4-paper interface, bilingual copy, custom
-  slash command, interactive Action menu, and friction prompt.
+  direct `@[ ] ` input rule.
+- `storybook/stories/fear-action` — A4-paper interface, bilingual copy,
+  interactive Action menu, and friction prompt. Milkdown owns the slash menu.
 
 ## Run the prototype
 
